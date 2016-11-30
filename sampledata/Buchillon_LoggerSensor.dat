@@ -1,0 +1,5 @@
+"TOA5","Buchillon","CR6","2688","CR6.Std.03","CPU:buchillon_v2_1.CR6","10245","LoggerSensor"
+"TIMESTAMP","RECORD","BattV_Avg","BattV_Min","PTemp_C_Avg","CDM1BattV_Avg","CDM1PTempC1_Avg","CDM1PTempC2_Avg","WaterTemp0mKT15a_Avg","WaterTemp0mKT15n_Avg"
+"TS","RN","Volts","Volts","Deg C","Volts","Deg C","Deg C","Deg C","Deg C"
+"","","Avg","Min","Avg","Avg","Avg","Avg","Avg","Avg"
+"2016-11-01 14:00:00",1874,12.87,12.72,9.58,12.79,9.64,9.81,12.75,12.78

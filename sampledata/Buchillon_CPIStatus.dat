@@ -1,0 +1,5 @@
+"TOA5","Buchillon","CR6","2688","CR6.Std.03","CPU:buchillon_v2_1.CR6","10245","CPIStatus"
+"TIMESTAMP","RECORD","BusLoad","RXOvf","NoSvc","MsgErr","RxErrMax","TxErrMax","FrameErr","ModuleInfo(1)","ModuleInfo(2)","ModuleInfo(3)","ModuleInfo(4)","ModuleInfo(5)","ModuleInfo(6)","ModuleInfo(7)","ModuleInfo(8)","ModuleInfo(9)","ModuleInfo(10)"
+"TS","RN","","","","","","","","","","","","","","","","",""
+"","","","","","","","","","","","","","","","","","",""
+"2016-11-01 14:04:58.037",2529,0,0,0,0,0,0,19,"CDM-A108,1266,CDM-A100,1,Active","","","","","","","","",""

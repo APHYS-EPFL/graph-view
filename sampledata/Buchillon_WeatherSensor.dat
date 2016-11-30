@@ -1,0 +1,5 @@
+"TOA5","Buchillon","CR6","2688","CR6.Std.03","CPU:buchillon_v2_1.CR6","10245","WeatherSensor"
+"TIMESTAMP","RECORD","WaterTemp35m_Avg","WaterTemp1m_Avg","AirTemp10m_Avg","SolarW_Avg","SolarWh_Tot","Rain_mm_Tot","AirTemp7m_Avg","RH_Avg","DewP_Avg","Gust_Max","Gust_TMx","Mean_Wind_Speed","Mean_Wind_Dir"
+"TS","RN","Deg C","Deg C","Deg C","W/m^2","Wh/m^2","mm","Deg C","%","Deg C","m/s","m/s","m/s","Deg"
+"","","Avg","Avg","Avg","Avg","Tot","Tot","Avg","Avg","Avg","Max","TMx","WVc","WVc"
+"2016-11-01 14:00:00",1874,7999,"INF",8.1,102.1,612.7592,0,0,0,0,3.8,"2016-11-01 13:56:00",1.542,289.6

@@ -1,0 +1,24 @@
+[
+	{
+		"title": "Temperature",
+		"columns": [ { "title": "Air temperature at 10m above ground", "name": "AirTemp10m_Avg" },
+                     { "title": "Water temperature at surface", "name": "WaterTemp0mKT15a" }
+                   ],
+        "unit": "°C",
+        "period": 30
+	},
+    {
+		"title": "Wind speed",
+		"columns": [ { "title": "Mean wind speed", "name": "Mean_Wind_Speed" },
+                     { "title": "Max gust", "name": "Gust_Max" }
+                   ],
+        "period": 30
+	},
+    {
+        "title": "Solar panel",
+        "columns": [ { "title": "Solar power output", "name": "SolarW_Avg" }
+                   ],
+        "unit": "W/m²",
+        "period": 30
+    }
+]
