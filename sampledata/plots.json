@@ -1,8 +1,15 @@
 [
 	{
-		"title": "Temperature",
-		"columns": [ { "title": "Air temperature at 10m above ground", "name": "AirTemp10m_Avg" },
-                     { "title": "Water temperature at surface", "name": "WaterTemp0mKT15a" }
+		"title": "Air temperature",
+		"columns": [ { "title": "Air temperature at 10m above ground", "name": "AirTemp10m_Avg" }
+                   ],
+        "unit": "°C",
+        "period": 30
+	},
+    {
+		"title": "Water temperature",
+		"columns": [ { "title": "Water temperature at surface", "name": "WaterTemp0mKT15a" },
+					 { "title": "Water temperature at 1m depth", "name": "WaterTemp1m_Avg" }
                    ],
         "unit": "°C",
         "period": 30
@@ -16,7 +23,7 @@
 	},
     {
         "title": "Solar panel",
-        "columns": [ { "title": "Solar power output", "name": "SolarW_Avg" }
+        "columns": [ { "title": "Solar power output", "name": "SolarW" }
                    ],
         "unit": "W/m²",
         "period": 30
