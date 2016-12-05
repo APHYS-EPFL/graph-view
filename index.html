@@ -55,7 +55,7 @@
                         </div>
                         <div class="btn-group btn-group-sm">
                             <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">
-                                {{ selection.month }}
+                                {{ AlphaMonth(selection.month) }}
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-right lv-scrollable-menu" role="menu">
@@ -127,6 +127,11 @@
             </div>
         </div>
 
+        <nav class="navbar navbar-inverse navbar-fixed-bottom">
+            <div class="container">
+                <p class="navbar-text">This application is still in development and the data shown on this page is preliminary. Please contact <a href="mailto:theo.baracchini@epfl.ch">theo.baracchini@epfl.ch</a> for further information.</p>
+            </div>
+        </nav>
 
     </body>
 </html>
