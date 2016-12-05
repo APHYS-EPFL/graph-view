@@ -36,6 +36,8 @@ Name and short description of each product.
   - Build tool; Concatenate all .js modules into a single bundle.js file.
 - ng-annotate
   - Add AngularJS dependency injection annotations.
+- Bootstrap
+    - Front-end web framework; Page layout and interactive elements.  
 - D3.js
   - SVG plotting library; Draw time series of simulation data.
 - srihash.org
