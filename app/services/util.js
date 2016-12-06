@@ -1,4 +1,4 @@
-angular.module('meteoGraphApp').service('Util', function() {
+angular.module('graphViewApp').service('Util', function() {
     /**
       * finds the entry closest to <query> in <collection>
       */

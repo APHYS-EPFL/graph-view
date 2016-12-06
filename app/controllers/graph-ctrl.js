@@ -1,4 +1,4 @@
-angular.module('meteoGraphApp').controller('GraphCtrl', function($scope, $q, Util, DataIndex, PlotIndex) {
+angular.module('graphViewApp').controller('GraphCtrl', function($scope, $q, Util, DataIndex, PlotIndex) {
     var indexReady = false;
 
     // $scope.chartData = [{ date: moment({ date: 1 }), value: 1 },

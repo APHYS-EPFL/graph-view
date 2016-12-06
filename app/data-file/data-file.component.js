@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('meteoGraphApp').factory('DataFile', function(DATA_HOST, DATA_FILEEXT, $q) {
+angular.module('graphViewApp').factory('DataFile', function(DATA_HOST, DATA_FILEEXT, $q) {
     var DataFile = function(series, year, month) {
         this.ready = false;
         this.loading = false;

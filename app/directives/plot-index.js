@@ -1,4 +1,4 @@
-angular.module('meteoGraphApp').service('PlotIndex', function($q, DATA_HOST, DataIndex) {
+angular.module('graphViewApp').service('PlotIndex', function($q, DATA_HOST, DataIndex) {
     this.plots = [];
 
     this.load = function() {

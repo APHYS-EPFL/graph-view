@@ -1,4 +1,4 @@
-angular.module('meteoGraphApp').service('DataIndex', function($q, DATA_HOST, DataFile) {
+angular.module('graphViewApp').service('DataIndex', function($q, DATA_HOST, DataFile) {
     this.dataSeries = {};
     this.dataPeriods = {};
     this.availableData = {};

@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('meteoGraphApp', []);
+angular.module('graphViewApp', []);

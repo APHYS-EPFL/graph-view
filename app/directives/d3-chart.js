@@ -1,4 +1,4 @@
-angular.module('meteoGraphApp').directive('d3Chart', function($window) {
+angular.module('graphViewApp').directive('d3Chart', function($window) {
     return {
         restrict: 'E',
         scope: {

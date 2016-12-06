@@ -1,4 +1,4 @@
 app
 gulpfile.js
 dist/js/bundle.min.js.map
-meteograph-*.tgz
+graph-view-*.tgz

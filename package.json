@@ -1,5 +1,5 @@
 {
-  "name": "meteograph",
+  "name": "graph-view",
   "version": "0.1.0",
   "description": "View current and past weather station data",
   "scripts": {
@@ -19,7 +19,7 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.5.3"
   },
-  "repository": "APHYS-EPFL/meteograph",
+  "repository": "APHYS-EPFL/graph-view",
   "author": "APHYS",
   "license": "MIT"
 }
