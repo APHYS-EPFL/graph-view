@@ -124,17 +124,29 @@ angular.module('graphViewApp').directive('d3Chart', function($window) {
                     var legendSpace = width / spec.columns.length; // width of each legend item
 
                     renderRoot.selectAll('.chart-data').remove();
-                    renderRoot.selectAll('.chart-legend').remove();
                     spec.columns.forEach(function(col, idx) {
-                        renderRoot.append('path')
-                            .attr('class', 'chart-data')
-                            .attr('d', line(col.data))
-                            .style('stroke', colors[idx]);
+                        if (spec.style === 'line' || spec.style === 'both') {
+                            renderRoot.append('path')
+                                .attr('class', 'chart-data chart-line')
+                                .attr('d', line(col.data))
+                                .style('stroke', colors[idx]);
+                        }
+
+                        if (spec.style === 'dots' || spec.style === 'both') {
+                            col.data.forEach(function(dot) {
+                                renderRoot.append('circle')
+                                .attr('class', 'chart-data chart-circle')
+                                .attr('r', 3)
+                                .attr('cx', x(dot.date))
+                                .attr('cy', y(dot.value))
+                                .style('fill', colors[idx]);
+                            });
+                        }
 
                         renderRoot.append('text')
                             .attr('x', (legendSpace / 2) + idx * legendSpace)
                             .attr('y', height + (margin.bottom / 2) + 5)
-                            .attr('class', 'chart-legend')
+                            .attr('class', 'chart-data chart-legend')
                             .style('fill', colors[idx])
                             .text(col.title);
                     });
@@ -148,8 +160,8 @@ angular.module('graphViewApp').directive('d3Chart', function($window) {
             function updateSize() {
                 var w = getContainerWidth();
                 width = w - (margin.left + margin.right);
-                // set height to 66% of width
-                height = w * 0.66 - (margin.top + margin.bottom);
+                // set height to 40% of width
+                height = w * 0.4 - (margin.top + margin.bottom);
             }
         }
     };

@@ -1,5 +1,5 @@
 body {
-    padding-top: 100px;
+    padding-top: 70px;
     padding-bottom: 70px;
 }
 
@@ -113,14 +113,23 @@ body {
     shape-rendering: crispEdges;
 }
 
-.chart-data {
+.chart-line {
     fill: none;
     stroke: steelblue;
     stroke-width: 1.5px;
 }
 
 .chart-legend {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
     text-anchor: middle;
+}
+.navtext {
+    padding: 6px 4px;
+    white-space: nowrap;
+}
+.navtext-mob {
+    padding: 5px 4px;
+    white-space: nowrap;
+    font-size: 12px;
 }
