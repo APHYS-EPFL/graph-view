@@ -26,7 +26,21 @@ angular.module('graphViewApp').factory('DataFile', function(DATA_HOST, DATA_FILE
                 if (err) {
                     reject('File not found: ' + file);
                 } else {
-                    me.parseCSV(data);
+                    me.data = me.parseCSV(data);
+                    // Current month: Read non-archived data file too, and concatenate the two
+                    if (me.year === moment().year() && me.month === moment().month()) {
+                        // eslint-disable-next-line no-console
+                        console.log('Reading current data file for ' + me.series);
+                        file = DATA_HOST + me.series + DATA_FILEEXT;
+                        d3.text(file, function(err2, data2) {
+                            if (err) {
+                                reject('File not found: ' + file);
+                            } else {
+                                me.data = me.data.concat(me.parseCSV(data2));
+                            }
+                        });
+                    }
+
                     me.ready = true;
                     me.loading = false;
                     resolve();
@@ -38,13 +52,14 @@ angular.module('graphViewApp').factory('DataFile', function(DATA_HOST, DATA_FILE
     DataFile.prototype.parseCSV = function(data) {
         var me = this;
         data = data.substring(data.indexOf('\n') + 1); // remove first line
-        me.data = d3.csv.parse(data, function(row) {
+        var parsedData = d3.csv.parse(data, function(row) {
             row.date = me.parseDate(row.TIMESTAMP);
             delete row.TIMESTAMP;
             return row;
         });
-        me.units = me.data.shift();
-        me.data.shift(); // ignore the second line of metadata
+        me.units = parsedData.shift();
+        parsedData.shift(); // ignore the second line of metadata
+        return parsedData;
     };
 
     DataFile.prototype.getFileURL = function() {
