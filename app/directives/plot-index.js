@@ -22,13 +22,14 @@ angular.module('graphViewApp').service('PlotIndex', function($q, DATA_HOST, Data
     };
 
 
-    // Load all data files required to display the plots for the given end date,
-    // then retrieve the desired columns and crop them to the given date range
-    this.loadPlotData = function(endDate) {
+    // Load all data files required to display the plots for the given start date
+    // and time period, then retrieve the desired columns and crop
+    // them to the appropriate date range
+    this.loadPlotData = function(startDate, period) {
         var loadingFiles = [];
         var processing = [];
+        var endDate = startDate.clone().add(period, 'days').endOf('day');
         this.plots.forEach(function(plot) {
-            var startDate = endDate.clone().subtract(plot.period, 'days').startOf('day');
             // Load data of each column in the plot
             plot.columns.forEach(function(col) {
                 var files = DataIndex.getFilesByColumn(col.name, startDate, endDate);

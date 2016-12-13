@@ -44,23 +44,26 @@
                     <div class="btn-group btn-group-justified">
                         <div class="btn-group btn-group-sm">
                             <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">
-                                {{ "Year " + selection.year }}
+                                {{ AlphaPeriod(selection.period) }}
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu lv-scrollable-menu" role="menu">
-                                <li ng-repeat="year in years">
-                                    <a href="#" ng-click="ChangeYear(year)">{{ year }}</a>
+                                <li ng-repeat="period in [1, 2, 3, 5, 7, 14, 30, 90]">
+                                    <a href="#" ng-click="ChangePeriod(period)">{{ AlphaPeriod(period) }}</a>
                                 </li>
                             </ul>
                         </div>
                         <div class="btn-group btn-group-sm">
+                            <span class="navtext-mob">starting on</span>
+                        </div>
+                        <div class="btn-group btn-group-sm">
                             <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">
-                                {{ AlphaMonth(selection.month) }}
+                                {{ AlphaMonth(selection.month, true) }}
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-right lv-scrollable-menu" role="menu">
                                 <li ng-repeat="month in months">
-                                    <a href="#" ng-click="ChangeMonth(month)">{{ AlphaMonth(month) }}</a>
+                                    <a href="#" ng-click="ChangeMonth(month)">{{ AlphaMonth(month, true) }}</a>
                                 </li>
                             </ul>
                         </div>
@@ -75,29 +78,46 @@
                                 </li>
                             </ul>
                         </div>
+                        <div class="btn-group btn-group-sm">
+                            <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">
+                                {{ selection.year }}
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu lv-scrollable-menu" role="menu">
+                                <li ng-repeat="year in years">
+                                    <a href="#" ng-click="ChangeYear(year)">{{ year }}</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
                 <div class="hidden-xs">
                     <div class="btn-group navbar-btn">
+                        <span class="navtext">Show</span>
+                    </div>
+                    <div class="btn-group navbar-btn">
                         <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">
-                            {{ "Year " + selection.year }}
+                            {{  AlphaPeriod(selection.period) }}
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu lv-scrollable-menu" role="menu">
-                            <li ng-repeat="year in years">
-                                <a href="#" ng-click="ChangeYear(year)">{{ year }}</a>
+                            <li ng-repeat="period in [1, 2, 3, 5, 7, 14, 30, 90]">
+                                <a href="#" ng-click="ChangePeriod(period)">{{ AlphaPeriod(period) }}</a>
                             </li>
                         </ul>
                     </div>
                     <div class="btn-group navbar-btn">
+                        <span class="navtext">starting on</span>
+                    </div>
+                    <div class="btn-group navbar-btn">
                         <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">
-                            {{ AlphaMonth(selection.month) }}
+                            {{ AlphaMonth(selection.month, false) }}
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu lv-scrollable-menu" role="menu">
                             <li ng-repeat="month in months">
-                                <a href="#" ng-click="ChangeMonth(month)">{{ AlphaMonth(month) }}</a>
+                                <a href="#" ng-click="ChangeMonth(month)">{{ AlphaMonth(month, false) }}</a>
                             </li>
                         </ul>
                     </div>
@@ -109,6 +129,17 @@
                         <ul class="dropdown-menu lv-scrollable-menu" role="menu">
                             <li ng-repeat="day in days">
                                 <a href="#" ng-click="ChangeDay(day)">{{ day }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="btn-group navbar-btn">
+                        <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle">
+                            {{ selection.year }}
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu lv-scrollable-menu" role="menu">
+                            <li ng-repeat="year in years">
+                                <a href="#" ng-click="ChangeYear(year)">{{ year }}</a>
                             </li>
                         </ul>
                     </div>

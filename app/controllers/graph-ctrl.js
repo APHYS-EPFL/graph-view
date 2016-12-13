@@ -11,11 +11,13 @@ angular.module('graphViewApp').controller('GraphCtrl', function($scope, $q, Util
 
         // Initialize with current year/week, closest existing
         // data will be determined later
-        var now = moment();
+        var period = 7;
+        var start = moment().subtract(period, 'days');
         $scope.selection = {
-            year: now.year(),
-            month: now.month(),
-            day: now.date()
+            period: period,
+            month: start.month(),
+            day: start.date(),
+            year: start.year()
         };
         indexReady = true;
         $scope.ChangeYear($scope.selection.year);
@@ -25,14 +27,26 @@ angular.module('graphViewApp').controller('GraphCtrl', function($scope, $q, Util
 
     $scope.$watch('selection', function(selection) {
         if (indexReady) {
-            PlotIndex.loadPlotData($scope.selectionMoment()).then(function() {
+            PlotIndex.loadPlotData($scope.selectionMoment(),
+            $scope.selection.period).then(function() {
                 // $scope.chartData = PlotIndex.plots[0].columns[0].data;
             });
         }
     }, true);
 
-    $scope.AlphaMonth = function(month) {
-        return moment({ month: month }).format('MMMM');
+    $scope.AlphaMonth = function(month, shortForm) {
+        if (indexReady) {
+            var m = moment({ month: month });
+            return shortForm ? m.format('MMM') : m.format('MMMM');
+        }
+        return 'Loading...';
+    };
+
+    $scope.AlphaPeriod = function(period) {
+        if (indexReady) {
+            return period + ' day' + (period === 1 ? '' : 's');
+        }
+        return '...';
     };
 
     $scope.ChangeDay = function(day) {
@@ -56,6 +70,10 @@ angular.module('graphViewApp').controller('GraphCtrl', function($scope, $q, Util
             $scope.months = DataIndex.dataPeriods[year];
             $scope.ChangeMonth(Util.closest($scope.months, $scope.selection.month, false));
         }
+    };
+
+    $scope.ChangePeriod = function(period) {
+        $scope.selection.period = period;
     };
 
     $scope.selectionMoment = function() {
