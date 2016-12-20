@@ -98,8 +98,8 @@ angular.module('graphViewApp').directive('d3Chart', function($window) {
                     updateSize();
                     x.range([0, width]);
                     y.range([height, 0]);
-                    xAxis.ticks(width / 100);
-                    yAxis.ticks(height / 50);
+                    xAxis.ticks(Math.max(width / 100, 2));
+                    yAxis.ticks(Math.max(height / 50, 4));
                     // Use unit from plot definition, fall back to unit from sensor data
                     if ('unit' in spec) {
                         yLabel.text(spec.unit);
