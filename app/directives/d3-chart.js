@@ -13,7 +13,7 @@ angular.module('graphViewApp').directive('d3Chart', function($window) {
             var enableTransition = false;
             var content = d3.select(container).append('div');
             var scalePadding = 0.05; // Scale includes 5% above/below actual data range
-            var margin = { top: 20, right: 20, bottom: 70, left: 50 };
+            var margin = { top: 20, right: 20, bottom: 70, left: 40 };
             var width = 0;
             var height = 0;
 
@@ -64,10 +64,10 @@ angular.module('graphViewApp').directive('d3Chart', function($window) {
                 .attr('class', 'chart-data');
 
             // Run digest on window resize; this is required to detect container size changes
-            /* TODO - this causes an inprog error while data is loading?!
             angular.element($window).bind('resize', function() {
                 scope.$apply();
-            });*/
+            });
+
             // Update width and re-render on container size change
             scope.$watch(getContainerWidth, render);
 
@@ -107,8 +107,6 @@ angular.module('graphViewApp').directive('d3Chart', function($window) {
                         yLabel.text(spec.columns[0].unit);
                     }
 
-                    svg.style('height', (height + margin.top + margin.bottom) + 'px');
-
                     var renderRoot = enableTransition ? g.transition() : g;
 
                     renderRoot.select('.chart-axis.x')
@@ -121,7 +119,8 @@ angular.module('graphViewApp').directive('d3Chart', function($window) {
                         // Support up to 20 lines per graph
                         colors = d3.scale.category20b().range();
                     }
-                    var legendSpace = width / spec.columns.length; // width of each legend item
+                    var textX = 10;
+                    var textY = height + (margin.bottom / 2) + 10;
 
                     renderRoot.selectAll('.chart-data').remove();
                     spec.columns.forEach(function(col, idx) {
@@ -134,22 +133,38 @@ angular.module('graphViewApp').directive('d3Chart', function($window) {
 
                         if (spec.style === 'dots' || spec.style === 'both') {
                             col.data.forEach(function(dot) {
-                                renderRoot.append('circle')
+                                // Implement circles as zero-length lines in order
+                                // to change radius by CSS in browsers without
+                                // SVG2 support
+                                renderRoot.append('line')
                                 .attr('class', 'chart-data chart-circle')
-                                .attr('r', 3)
-                                .attr('cx', x(dot.date))
-                                .attr('cy', y(dot.value))
-                                .style('fill', colors[idx]);
+                                .attr('x1', x(dot.date))
+                                .attr('y1', y(dot.value))
+                                .attr('x2', x(dot.date))
+                                .attr('y2', y(dot.value))
+                                .style('stroke', colors[idx]);
                             });
                         }
 
-                        renderRoot.append('text')
-                            .attr('x', (legendSpace / 2) + idx * legendSpace)
-                            .attr('y', height + (margin.bottom / 2) + 5)
+                        var t = renderRoot.append('text')
+                            .attr('x', textX)
+                            .attr('y', textY)
                             .attr('class', 'chart-data chart-legend')
                             .style('fill', colors[idx])
                             .text(col.title);
+                        // SVG 1.1 compliant way of reading text width
+                        var bbox = t[0][0].getBBox();
+                        // Legend line full => start new line
+                        if (textX + bbox.width > width) {
+                            textY += 1.3 * bbox.height;
+                            textX = 10;
+                            t.attr('x', textX).attr('y', textY);
+                        } else {
+                            textX += bbox.width + 15;
+                        }
                     });
+                    margin.bottom = textY - height + 20;
+                    svg.style('height', (height + margin.top + margin.bottom) + 'px');
                 }
             }
 
@@ -159,9 +174,18 @@ angular.module('graphViewApp').directive('d3Chart', function($window) {
 
             function updateSize() {
                 var w = getContainerWidth();
+
+                if (w < 720) {
+                    // Mobile: Set height to 75% of width
+                    height = w * 0.75 - (margin.top + margin.bottom);
+                    margin.left = 30;
+                } else {
+                    // Desktop: Set height to 40% of width
+                    height = w * 0.4 - (margin.top + margin.bottom);
+                    margin.left = 40;
+                }
+                g.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
                 width = w - (margin.left + margin.right);
-                // set height to 40% of width
-                height = w * 0.4 - (margin.top + margin.bottom);
             }
         }
     };
