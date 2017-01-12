@@ -57,7 +57,11 @@ angular.module('graphViewApp').controller('GraphCtrl', function($scope, $q, Util
         var nDays = moment({ month: month }).daysInMonth();
         $scope.days = [];
         for (var i = 1; i <= nDays; i++) {
-            $scope.days.push(i);
+            // In current month, only show until today
+            if ($scope.selection.year < moment().year() || month < moment().month() ||
+            i <= moment().date()) {
+                $scope.days.push(i);
+            }
         }
         $scope.ChangeDay(Util.closest($scope.days, $scope.selection.day, false));
     };
