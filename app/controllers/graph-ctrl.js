@@ -28,9 +28,7 @@ angular.module('graphViewApp').controller('GraphCtrl', function($scope, $q, Util
     $scope.$watch('selection', function(selection) {
         if (indexReady) {
             PlotIndex.loadPlotData($scope.selectionMoment(),
-            $scope.selection.period).then(function() {
-                // $scope.chartData = PlotIndex.plots[0].columns[0].data;
-            });
+            $scope.selection.period);
         }
     }, true);
 
@@ -78,6 +76,6 @@ angular.module('graphViewApp').controller('GraphCtrl', function($scope, $q, Util
 
     $scope.selectionMoment = function() {
         var sel = $scope.selection;
-        return moment({ year: sel.year, month: sel.month, day: sel.day }).endOf('day');
+        return moment({ year: sel.year, month: sel.month, day: sel.day });
     };
 });
