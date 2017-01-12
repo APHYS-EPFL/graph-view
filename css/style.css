@@ -3,10 +3,6 @@ body {
     padding-bottom: 70px;
 }
 
-.nav > li > a {
-    padding: 6px 12px;
-}
-
 .lv-container-dynamic {
     padding-right: 15px;
     padding-left: 15px;
